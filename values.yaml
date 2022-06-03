@@ -1,0 +1,222 @@
+# -- Number of replicas
+replicaCount: 1
+
+config:
+  # -- External URL of the penpot instance
+  externalUrl: http://localhost
+  # -- Tenant name
+  tenant: penpot
+  # -- Send telemetry data
+  telemetry: false
+  s3:
+    # -- Enable S3 storage backend
+    enabled: false
+  smtp:
+    # -- Enable SMTP server
+    enabled: false
+    # -- Address used to send e-mails from
+    from: no-reply@penpot.app
+    # -- ReplyTo address (defaults to "from" address)
+    replyTo: ""
+    # -- SMTP user name
+    username: ""
+    # -- SMTP password
+    password: ""
+    # -- SMTP host
+    host: localhost
+    # -- SMTP port
+    port: 465
+    # -- Use TLS for SMTP connection
+    tls: true
+    # -- Use SSL for SMTP connection
+    ssl: false
+  # -- Flags passed to penpot frontend and backend
+  flags: enable-registration
+  auth:
+    registration:
+      # -- Enable user registration
+      enabled: true
+      # -- Whitelist for allowed registration domains (empty allows all)
+      domainWhitelist: ""
+    google:
+      # -- Enable Google OAuth provider
+      enabled: false
+      # -- OAuth client ID
+      client: ""
+      # -- OAuth client secret
+      secret: ""
+    github:
+      # -- Enable GitHub OAuth provider
+      enabled: false
+      # -- OAuth client ID
+      client: ""
+      # -- OAuth client secret
+      secret: ""
+    gitlab:
+      # -- Enable GitLab OAuth provider
+      enabled: false
+      # -- Base URI of GitLab instance
+      baseUri: "https://gitlab.com"
+      # -- OAuth client ID
+      client: ""
+      # -- OAuth client secret
+      secret: ""
+    oidc:
+      # -- Enable generic OAuth provider
+      enabled: false
+      # -- Base URI of OAuth provider
+      baseUri: ""
+      # -- Default OIDC scopes
+      scopes: openid email profile
+      # -- Attribute used as user name
+      name: name
+      # -- Attribute used as user e-mail address
+      email: email
+      # -- OAuth client ID
+      client: ""
+      # -- OAuth client secret
+      secret: ""
+    ldap:
+      # -- Enable LDAP login
+      enabled: false
+      # -- LDAP host
+      host: localhost
+      # -- LDAP port
+      port: 10389
+      # -- Enable SSL for LDAP
+      ssl: false
+      # -- Enable STARTTLS for LDAP
+      starttls: false
+      # -- LDAP base DN
+      baseDN: ou=people,dc=mycompany,dc=com
+      # -- LDAP bind DN
+      bindDN: cn=admin,dc=mycompany,dc=com
+      # -- LDAP bind password
+      bindPassword: password
+      attributes:
+        # -- LDAP attribute for user name
+        username: uid
+        # -- LDAP attribute for user e-mail address
+        email: mail
+        # -- LDAP attribute for user full name
+        fullname: cn
+        # -- LDAP attribute for user photo
+        photo: jpegPhoto
+
+postgresql:
+  auth:
+    # -- Postgresql database name
+    database: penpot
+    # -- Postgresql database user
+    username: penpot
+    # -- Postgresql database password
+    password: penpot
+    # -- Enable postgres admin user
+    enablePostgresUser: false
+    # -- Password for postgres admin user
+    postgresPassword: postgres
+
+redis:
+  # -- Redis deployment type
+  architecture: standalone
+  auth:
+    # -- Enable authentication in Redis
+    enabled: false
+
+backend:
+  image:
+    # -- penpot backend image
+    repository: penpotapp/backend
+    # -- penpot backend pull policy
+    pullPolicy: IfNotPresent
+    # -- Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  # -- Resources for backend container
+  resources: {}
+
+frontend:
+  image:
+    # -- penpot frontend image
+    repository: penpotapp/frontend
+    # -- penpot frontend pull policy
+    pullPolicy: IfNotPresent
+    # -- Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  # -- Resources for frontend container
+  resources: {}
+
+exporter:
+  image:
+    # -- penpot exporter image
+    repository: penpotapp/exporter
+    # -- penpot exporter pull policy
+    pullPolicy: IfNotPresent
+    # -- Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  # -- Resources for exporter container
+  resources: {}
+
+# -- Image pull secrets for penpot pod
+imagePullSecrets: []
+
+# -- Override name of this release
+nameOverride: ""
+
+# -- Override full name of this release
+fullnameOverride: ""
+
+persistence:
+  # -- Enable persistent storage
+  enabled: true
+  # -- Size of PVC for data
+  size: 1Gi
+  # -- Name of storage class for data PVC
+  storageClass: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# -- Annotations to be added to the penpot pod
+podAnnotations: {}
+
+service:
+  # -- Service type for penpot service
+  type: ClusterIP
+  # -- Service port for penpot frontend
+  port: 80
+
+ingress:
+  # -- Enable ingress for penpot
+  enabled: false
+  # -- Name of the ingress class
+  className: ""
+  # -- Annotations to be added to ingress
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  # -- External hostname for penpot
+  hosts:
+    - host: penpot.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  # -- TLS configuration for ingress (see [docs](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls))
+  tls: []
+  #  - secretName: penpot-tls
+  #    hosts:
+  #      - penpot.local
+
+# -- Node selector for penpot pod
+nodeSelector: {}
+
+# -- Tolerations for penpot pod
+tolerations: []
+
+# -- Affinity for penpot pod
+affinity: {}

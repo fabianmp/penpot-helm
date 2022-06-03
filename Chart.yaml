@@ -1,0 +1,25 @@
+apiVersion: v2
+name: penpot
+description: A Helm chart for penpot.app
+type: application
+version: 0.1.0
+appVersion: "1.13.1-beta"
+home: https://penpot.app/
+sources:
+  - https://github.com/fabianmp/penpot-helm
+maintainers:
+  - name: Fabian Zach
+    email: fabian.zach@methodpark.de
+    url: https://github.com/fabianmp
+keywords:
+  - penpot
+  - penpot.app
+  - design
+dependencies:
+  - name: postgresql
+    repository: https://charts.bitnami.com/bitnami
+    version: 11.5.0
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami
+    version: 16.10.0
+    

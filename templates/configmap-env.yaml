@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "penpot.fullname" . }}-env
+data:
+  PENPOT_PUBLIC_URI: {{ .Values.config.externalUrl | quote }}
+  PENPOT_HTTP_SERVER_HOST: "0.0.0.0"
+  PENPOT_DATABASE_URI: postgresql://{{ .Release.Name }}-postgresql/penpot
+  PENPOT_REDIS_URI: redis://{{ .Release.Name }}-redis-master/0
+  {{- if not .Values.config.s3.enabled }}
+  PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
+  PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
+  {{- end }}
+  {{- if .Values.config.smtp.enabled }}
+  PENPOT_SMTP_ENABLED: {{ .Values.config.smtp.enabled | quote }}
+  PENPOT_SMTP_DEFAULT_FROM: {{ .Values.config.smtp.from | quote }}
+  PENPOT_SMTP_DEFAULT_REPLY_TO: {{ .Values.config.smtp.replyTo | default .Values.config.smtp.from | quote }}
+  PENPOT_SMTP_HOST: {{ .Values.config.smtp.host | quote }}
+  PENPOT_SMTP_PORT: {{ .Values.config.smtp.port | quote }}
+  PENPOT_SMTP_USERNAME: {{ .Values.config.smtp.username | quote }}
+  PENPOT_SMTP_TLS: {{ .Values.config.smtp.tls | quote }}
+  PENPOT_SMTP_SSL: {{ .Values.config.smtp.ssl | quote }}
+  {{- end }}
+  PENPOT_TELEMETRY_ENABLED: {{ .Values.config.telemetry | quote }}
+  PENPOT_FLAGS: {{ .Values.config.flags | quote }}
+  PENPOT_REGISTRATION_ENABLED: {{ .Values.config.auth.registration.enabled | quote }}
+  PENPOT_REGISTRATION_DOMAIN_WHITELIST: {{ .Values.config.auth.registration.domainWhitelist | quote }}
+  {{- if .Values.config.auth.google.enabled }}
+  PENPOT_GOOGLE_CLIENT_ID: {{ .Values.config.auth.google.client | quote }}
+  {{- end }}
+  {{- if .Values.config.auth.github.enabled }}
+  PENPOT_GITHUB_CLIENT_ID: {{ .Values.config.auth.github.client | quote }}
+  {{- end }}
+  {{- if .Values.config.auth.gitlab.enabled }}
+  PENPOT_GITLAB_BASE_URI: {{ .Values.config.auth.gitlab.baseUri | quote }}
+  PENPOT_GITLAB_CLIENT_ID: {{ .Values.config.auth.gitlab.client | quote }}
+  {{- end }}
+  {{- if .Values.config.auth.oidc.enabled }}
+  PENPOT_OIDC_BASE_URI: {{ .Values.config.auth.oidc.baseUri | quote }}
+  PENPOT_OIDC_CLIENT_ID: {{ .Values.config.auth.oidc.client | quote }}
+  PENPOT_OIDC_SCOPES: {{ .Values.config.auth.oidc.scopes | quote }}
+  PENPOT_OIDC_NAME_ATTR: {{ .Values.config.auth.oidc.name | quote }}
+  PENPOT_OIDC_EMAIL_ATTR: {{ .Values.config.auth.oidc.email | quote }}
+  {{- end }}
+  {{- if .Values.config.auth.ldap.enabled }}
+  PENPOT_LDAP_HOST: {{ .Values.config.auth.ldap.host | quote }}
+  PENPOT_LDAP_PORT: {{ .Values.config.auth.ldap.port | quote }}
+  PENPOT_LDAP_SSL: {{ .Values.config.auth.ldap.ssl | quote }}
+  PENPOT_LDAP_STARTTLS: {{ .Values.config.auth.ldap.starttls | quote }}
+  PENPOT_LDAP_BASE_DN: {{ .Values.config.auth.ldap.baseDN | quote }}
+  PENPOT_LDAP_BIND_DN: {{ .Values.config.auth.ldap.bindDN | quote }}
+  PENPOT_LDAP_ATTRS_USERNAME: {{ .Values.config.auth.ldap.attributes.username | quote }}
+  PENPOT_LDAP_ATTRS_EMAIL: {{ .Values.config.auth.ldap.attributes.email | quote }}
+  PENPOT_LDAP_ATTRS_FULLNAME: {{ .Values.config.auth.ldap.attributes.fullname | quote }}
+  PENPOT_LDAP_ATTRS_PHOTO: {{ .Values.config.auth.ldap.attributes.photo | quote }}
+  PENPOT_LOGIN_WITH_LDAP: {{ .Values.config.auth.ldap.enabled | quote }}
+  {{- end }}
