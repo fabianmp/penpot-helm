@@ -22,8 +22,7 @@ data:
   PENPOT_SMTP_SSL: {{ .Values.config.smtp.ssl | quote }}
   {{- end }}
   PENPOT_TELEMETRY_ENABLED: {{ .Values.config.telemetry | quote }}
-  PENPOT_FLAGS: {{ .Values.config.flags | quote }}
-  PENPOT_REGISTRATION_ENABLED: {{ .Values.config.auth.registration.enabled | quote }}
+  PENPOT_FLAGS: {{ include "penpot.flags" . | quote }}
   PENPOT_REGISTRATION_DOMAIN_WHITELIST: {{ .Values.config.auth.registration.domainWhitelist | quote }}
   {{- if .Values.config.auth.google.enabled }}
   PENPOT_GOOGLE_CLIENT_ID: {{ .Values.config.auth.google.client | quote }}

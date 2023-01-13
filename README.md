@@ -1,6 +1,6 @@
 # penpot
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.13.1-beta](https://img.shields.io/badge/AppVersion-1.13.1--beta-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.2-beta](https://img.shields.io/badge/AppVersion-1.16.2--beta-informational?style=flat-square)
 
 A Helm chart for penpot.app
 
@@ -20,8 +20,8 @@ A Helm chart for penpot.app
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.5.0 |
-| https://charts.bitnami.com/bitnami | redis | 16.10.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.9.13 |
+| https://charts.bitnami.com/bitnami | redis | 16.13.2 |
 
 ## Values
 
@@ -54,6 +54,7 @@ A Helm chart for penpot.app
 | config.auth.ldap.port | int | `10389` | LDAP port |
 | config.auth.ldap.ssl | bool | `false` | Enable SSL for LDAP |
 | config.auth.ldap.starttls | bool | `false` | Enable STARTTLS for LDAP |
+| config.auth.local.enabled | bool | `true` | Enable login with local user |
 | config.auth.oidc.baseUri | string | `""` | Base URI of OAuth provider |
 | config.auth.oidc.client | string | `""` | OAuth client ID |
 | config.auth.oidc.email | string | `"email"` | Attribute used as user e-mail address |
@@ -64,7 +65,7 @@ A Helm chart for penpot.app
 | config.auth.registration.domainWhitelist | string | `""` | Whitelist for allowed registration domains (empty allows all) |
 | config.auth.registration.enabled | bool | `true` | Enable user registration |
 | config.externalUrl | string | `"http://localhost"` | External URL of the penpot instance |
-| config.flags | string | `"enable-registration"` | Flags passed to penpot frontend and backend |
+| config.flags | string | `""` | Flags passed to penpot frontend and backend |
 | config.s3.enabled | bool | `false` | Enable S3 storage backend |
 | config.smtp.enabled | bool | `false` | Enable SMTP server |
 | config.smtp.from | string | `"no-reply@penpot.app"` | Address used to send e-mails from |

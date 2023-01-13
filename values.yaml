@@ -31,13 +31,16 @@ config:
     # -- Use SSL for SMTP connection
     ssl: false
   # -- Flags passed to penpot frontend and backend
-  flags: enable-registration
+  flags: ""
   auth:
     registration:
       # -- Enable user registration
       enabled: true
       # -- Whitelist for allowed registration domains (empty allows all)
       domainWhitelist: ""
+    local:
+      # -- Enable login with local user
+      enabled: true
     google:
       # -- Enable Google OAuth provider
       enabled: false

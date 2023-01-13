@@ -60,3 +60,41 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "penpot.flags" -}}
+{{- $flags := .Values.config.flags }}
+{{- if .Values.config.smtp.enabled }}
+{{- $flags = printf "%s enable-smtp" $flags }}
+{{- else }}
+{{- $flags = printf "%s disable-smtp" $flags }}
+{{- end }}
+{{- if .Values.config.auth.local.enabled }}
+{{- $flags = printf "%s enable-login" $flags }}
+{{- else }}
+{{- $flags = printf "%s disable-login" $flags }}
+{{- end }}
+{{- if .Values.config.auth.registration.enabled }}
+{{- $flags = printf "%s enable-registration" $flags }}
+{{- else }}
+{{- $flags = printf "%s disable-registration" $flags }}
+{{- end }}
+{{- if .Values.config.auth.google.enabled }}
+{{- $flags = printf "%s enable-login-with-google" $flags }}
+{{- end }}
+{{- if .Values.config.auth.github.enabled }}
+{{- $flags = printf "%s enable-login-with-github" $flags }}
+{{- end }}
+{{- if .Values.config.auth.gitlab.enabled }}
+{{- $flags = printf "%s enable-login-with-gitlab" $flags }}
+{{- end }}
+{{- if .Values.config.auth.oidc.enabled }}
+{{- $flags = printf "%s enable-login-with-oidc" $flags }}
+{{- end }}
+{{- if .Values.config.auth.ldap.enabled }}
+{{- $flags = printf "%s enable-login-with-ldap" $flags }}
+{{- end }}
+{{- $flags | trim }}
+{{- end }}
