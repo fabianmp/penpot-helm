@@ -2,8 +2,8 @@ apiVersion: v2
 name: penpot
 description: A Helm chart for penpot.app
 type: application
-version: 0.2.0
-appVersion: "1.16.2-beta"
+version: 0.3.0
+appVersion: "1.19.0"
 home: https://penpot.app/
 sources:
   - https://github.com/fabianmp/penpot-helm
@@ -18,8 +18,7 @@ keywords:
 dependencies:
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
-    version: 11.9.13
+    version: 12.8.0
   - name: redis
     repository: https://charts.bitnami.com/bitnami
-    version: 16.13.2
-    
+    version: 17.14.6

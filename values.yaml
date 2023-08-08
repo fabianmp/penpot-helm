@@ -107,6 +107,9 @@ config:
         photo: jpegPhoto
 
 postgresql:
+  image:
+    # -- Image to be used for Postgresql (currently 14.x)
+    tag: 14.8.0
   auth:
     # -- Postgresql database name
     database: penpot

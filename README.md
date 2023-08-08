@@ -1,6 +1,6 @@
 # penpot
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.2-beta](https://img.shields.io/badge/AppVersion-1.16.2--beta-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.19.0](https://img.shields.io/badge/AppVersion-1.19.0-informational?style=flat-square)
 
 A Helm chart for penpot.app
 
@@ -20,8 +20,8 @@ A Helm chart for penpot.app
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.9.13 |
-| https://charts.bitnami.com/bitnami | redis | 16.13.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 12.8.0 |
+| https://charts.bitnami.com/bitnami | redis | 17.14.6 |
 
 ## Values
 
@@ -104,6 +104,7 @@ A Helm chart for penpot.app
 | postgresql.auth.password | string | `"penpot"` | Postgresql database password |
 | postgresql.auth.postgresPassword | string | `"postgres"` | Password for postgres admin user |
 | postgresql.auth.username | string | `"penpot"` | Postgresql database user |
+| postgresql.image.tag | string | `"14.8.0"` | Image to be used for Postgresql (currently 14.x) |
 | redis.architecture | string | `"standalone"` | Redis deployment type |
 | redis.auth.enabled | bool | `false` | Enable authentication in Redis |
 | replicaCount | int | `1` | Number of replicas |
