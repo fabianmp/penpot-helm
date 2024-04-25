@@ -72,9 +72,9 @@ Create the name of the service account to use
 {{- $flags = printf "%s disable-smtp" $flags }}
 {{- end }}
 {{- if .Values.config.auth.local.enabled }}
-{{- $flags = printf "%s enable-login" $flags }}
+{{- $flags = printf "%s enable-login-with-password" $flags }}
 {{- else }}
-{{- $flags = printf "%s disable-login" $flags }}
+{{- $flags = printf "%s disable-login-with-password" $flags }}
 {{- end }}
 {{- if .Values.config.auth.registration.enabled }}
 {{- $flags = printf "%s enable-registration" $flags }}
