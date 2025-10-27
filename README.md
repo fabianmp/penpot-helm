@@ -1,6 +1,6 @@
 # penpot
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.1](https://img.shields.io/badge/AppVersion-2.10.1-informational?style=flat-square)
 
 A Helm chart for penpot.app
 
@@ -10,7 +10,7 @@ A Helm chart for penpot.app
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Fabian Zach | <fabian.zach@methodpark.de> | <https://github.com/fabianmp> |
+| Fabian Zach | <fabian.zach@ul.com> | <https://github.com/fabianmp> |
 
 ## Source Code
 
@@ -20,8 +20,8 @@ A Helm chart for penpot.app
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 12.8.0 |
-| https://charts.bitnami.com/bitnami | redis | 17.14.6 |
+| https://charts.bitnami.com/bitnami | postgresql | 16.7.27 |
+| https://valkey.io/valkey-helm/ | valkey | 0.7.6 |
 
 ## Values
 
@@ -104,9 +104,7 @@ A Helm chart for penpot.app
 | postgresql.auth.password | string | `"penpot"` | Postgresql database password |
 | postgresql.auth.postgresPassword | string | `"postgres"` | Password for postgres admin user |
 | postgresql.auth.username | string | `"penpot"` | Postgresql database user |
-| postgresql.image.tag | string | `"14.8.0"` | Image to be used for Postgresql (currently 14.x) |
-| redis.architecture | string | `"standalone"` | Redis deployment type |
-| redis.auth.enabled | bool | `false` | Enable authentication in Redis |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` | Image to be used for Postgresql (fallback to legacy images) |
 | replicaCount | int | `1` | Number of replicas |
 | service.port | int | `80` | Service port for penpot frontend |
 | service.type | string | `"ClusterIP"` | Service type for penpot service |
