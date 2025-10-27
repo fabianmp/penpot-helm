@@ -122,13 +122,6 @@ postgresql:
     # -- Password for postgres admin user
     postgresPassword: postgres
 
-redis:
-  # -- Redis deployment type
-  architecture: standalone
-  auth:
-    # -- Enable authentication in Redis
-    enabled: false
-
 backend:
   image:
     # -- penpot backend image

@@ -6,7 +6,7 @@ data:
   PENPOT_PUBLIC_URI: {{ .Values.config.externalUrl | quote }}
   PENPOT_HTTP_SERVER_HOST: "0.0.0.0"
   PENPOT_DATABASE_URI: postgresql://{{ .Release.Name }}-postgresql/penpot
-  PENPOT_REDIS_URI: redis://{{ .Release.Name }}-redis-master/0
+  PENPOT_REDIS_URI: redis://{{ .Release.Name }}-valkey/0
   {{- if not .Values.config.s3.enabled }}
   PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
   PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets

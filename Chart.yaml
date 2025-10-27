@@ -9,7 +9,7 @@ sources:
   - https://github.com/fabianmp/penpot-helm
 maintainers:
   - name: Fabian Zach
-    email: fabian.zach@methodpark.de
+    email: fabian.zach@ul.com
     url: https://github.com/fabianmp
 keywords:
   - penpot
@@ -19,6 +19,6 @@ dependencies:
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
     version: 12.8.0
-  - name: redis
-    repository: https://charts.bitnami.com/bitnami
-    version: 17.14.6
+  - name: valkey
+    repository: https://valkey.io/valkey-helm/
+    version: 0.7.6
