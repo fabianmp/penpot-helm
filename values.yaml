@@ -108,8 +108,8 @@ config:
 
 postgresql:
   image:
-    # -- Image to be used for Postgresql (currently 14.x)
-    tag: 14.8.0
+    # -- Image to be used for Postgresql (fallback to legacy images)
+    repository: bitnamilegacy/postgresql
   auth:
     # -- Postgresql database name
     database: penpot
