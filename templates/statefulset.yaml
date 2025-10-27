@@ -51,17 +51,19 @@ spec:
                 name: {{ include "penpot.fullname" . }}-env
             - secretRef:
                 name: {{ include "penpot.fullname" . }}-env
+          env:
+            - name: PENPOT_BACKEND_URI
+              value: http://localhost:6060
+            - name: PENPOT_EXPORTER_URI
+              value: http://localhost:6061
           volumeMounts:
-            - name: nginx
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
           {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: /opt/data
           {{- end }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -95,10 +97,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      volumes:
-        - name: nginx
-          configMap:
-            name: {{ include "penpot.fullname" . }}-nginx
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
